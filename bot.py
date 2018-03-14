@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function, unicode_liter
 from bothub_client.bot import BaseBot
 from bothub_client.messages import Message
 from .kospi200 import tradePrice
+from .sumofOption import sum_of_option
 
 class Bot(BaseBot):
 	def handle_message(self, event, context):
@@ -16,6 +17,10 @@ class Bot(BaseBot):
 			self.send_message(msg)
 		elif message == '/price':
 			data = 'Kospi200 : {}'.format(tradeprice())
+			msg = Message(event).set_text(data)
+			self.send_message(msg)
+		elif message == '/sum':
+			data = sum_of_option()
 			msg = Message(event).set_text(data)
 			self.send_message(msg)
 
