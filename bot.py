@@ -14,6 +14,12 @@ class Bot(BaseBot):
 			msg = Message(event).set_text('키보드를 설정합니다.')
 			for item in menu:
 				msg.add_keyboard_button(item)
+			data = self.get_project_data()
+			data['parity_max'] = '102'
+			data['parity_min'] = '98'
+			data['price_max'] = '250'
+			data['price_min'] = '100'
+			self.set_project_data(data)
 			self.send_message(msg)
 		elif message == '/price':
 			data = 'Kospi200 : {}'.format(tradeprice())
